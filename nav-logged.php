@@ -336,10 +336,12 @@ $userinfo = get_UserInfo($useremail);
                   Menu
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <li><a class="dropdown-item" href="menu.php#appetizer">Appetizers</a></li>
+                  <li><a class="dropdown-item" href="menu.php#appetizer & snacks">Appetizers & Snacks</a></li>
                   <li><a class="dropdown-item" href="menu.php#pizza">Pizza</a></li>
-                  <li><a class="dropdown-item" href="menu.php#burger">Burger</a></li>
                   <li><a class="dropdown-item" href="menu.php#beverage">Beverages</a></li>
+                  <li><a class="dropdown-item" href="menu.php#burger">Burger</a></li>
+                  <li><a class="dropdown-item" href="menu.php#sandwich">Sandwich</a></li>
+                  <li><a class="dropdown-item" href="menu.php#dessert">Dessert</a></li>
                 </ul>
               </li>
               <li class="nav-item">

@@ -102,8 +102,8 @@ include 'sidebar.php';
                 <select id="statusFilter" name="statusFilter" onchange="filterByStatus()">
                     <option value="">All Orders</option>
                     <option value="Pending">Pending</option>
-                    <option value="On Process">Process</option>
-                    <option value="On Process">On the way </option>
+                    <option value="Processing">Processing</option>
+                    <option value="On the way">On the way </option>
                     <option value="Completed">Completed</option>
                     <option value="Cancelled">Cancelled</option>
                 </select>

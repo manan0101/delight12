@@ -28,6 +28,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $reservedTime = $_POST['reservedTime']; // Input format is 'HH:MM'
     $reservedDate = $_POST['reservedDate']; // Input format is 'YYYY-MM-DD'
 
+    // Validate contact number
+    if (!preg_match('/^[0-9]{10}$/', $contact)) {
+        echo '<script>alert("Invalid contact number! Please enter exactly 10 digits."); window.history.back();</script>';
+        exit();
+    }
+
     // Debug: Check the raw reservedTime input
     echo "Raw Reserved Time: " . htmlspecialchars($reservedTime) . "<br>";
 

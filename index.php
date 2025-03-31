@@ -130,14 +130,14 @@ $conn->close();
                     <div class="category-card" style="background-image: url('images/appe-index.avif');" data-aos="fade-up">
                       <div class="card-overlay">
                         <div class="overlay-content">
-                          <h3>Appetizer</h3>
+                          <h3>Appetize & Snacks</h3>
                           <p>Start your meal with our delicious appetizers that set the tone for a delightful dining experience.</p>
                           <a href="menu.php#appetizer">
                             <button class="explore-btn">Explore Variety</button></a>
                         </div>
                       </div>
                       <div class="card-bottom">
-                        <h3>Appetizer</h3>
+                        <h3>Appetizer & Snacks</h3>
                         <a href="menu.php#appetizer">
                           <button class="explore-btn">Explore Variety</button></a>
                       </div>
@@ -316,7 +316,7 @@ $conn->close();
         <div class="story-content row mb-2">
           <div class="story-text col-lg-6 col-md-6 col-sm-12 reveal mt-2" data-aos="fade-up" data-os-interval="300">
             <p>At <strong>Delight</strong>, we are passionate about celebrating food. Our chefs bring a touch of creativity to every dish, ensuring a feast for your senses. Join us for an extraordinary dining experience that celebrates flavor and joy.</p>
-            <p>Founded in [2020], Delight has been at the forefront of culinary innovation. Our commitment to using the freshest ingredients, combined with our chefs' expertise, has earned us a reputation for excellence. We believe that dining is not just about eating; it's about experiencing the art of food.</p>
+            <p>Founded in [2025], Delight has been at the forefront of culinary innovation. Our commitment to using the freshest ingredients, combined with our chefs' expertise, has earned us a reputation for excellence. We believe that dining is not just about eating; it's about experiencing the art of food.</p>
             <p>Whether you're looking for a romantic dinner, a family gathering, or a place to celebrate special occasions, Delight offers the perfect ambiance and exquisite cuisine to make your visit unforgettable. Come and experience the joy of flavor with us!</p>
             <a href="menu.php" class="about_btn">
               <i class="fa-solid fa-burger"></i>Order Now
@@ -455,7 +455,7 @@ $conn->close();
         </div>
       </div>
       <div class="footer-bottom">
-        <h4>&copy; 2025 Authored by Manan Maluka & Karan Dave. All Rights Reserved.</h4>
+        <h4>&copy; 2025 Developed by Manan Maluka & Karan Dave. All Rights Reserved.</h4>
       </div>
     </div>
   </footer>

@@ -13,13 +13,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $status = $_POST['status'];
   $reservation_id = $_POST['reservation_id']; // Assuming reservation_id is sent via POST
 
+  // Validate contact number
+  if (!preg_match('/^[0-9]{10}$/', $contact)) {
+    echo '<script>alert("Invalid contact number! Please enter exactly 10 digits."); window.history.back();</script>';
+    exit();
+  }
+
   // Prepare and bind
   $stmt = $conn->prepare("UPDATE reservations SET email=?, name=?, contact=?, noOfGuests=?, reservedTime=?, reservedDate=?, status=? WHERE reservation_id=?");
   $stmt->bind_param("sssssssi", $email, $name, $contact, $noOfGuests, $reservedTime, $reservedDate, $status, $reservation_id);
 
   // Execute and check
   if ($stmt->execute()) {
-    echo "Reservation updated successfully.";
+    echo '<script>alert("Reservation updated successfully."); window.location.href="reservations.php";</script>';
   } else {
     echo "Error Updating Reservation: " . $stmt->error;
   }
@@ -27,9 +33,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   // Close connection
   $stmt->close();
   $conn->close();
-
-  // Redirect
-  header("Location: reservations.php");
-  exit();
 }
 ?>

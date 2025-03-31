@@ -249,8 +249,8 @@ include 'sidebar.php';
 
           <div class="modal-content">
             <div class="input-group">
-              <input type="text" name="contact" id="contact" class="input" required>
-              <label for="contact" class="label">Contact</label>
+              <input type="text" name="contact" id="contact" class="input" pattern="[0-9]{10}" maxlength="10" title="Please enter exactly 10 digits" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10)" required>
+              <label for="contact" class="label">Contact (10 digits)</label>
             </div>
           </div>
 
@@ -306,8 +306,8 @@ include 'sidebar.php';
       </div>
       <div class="modal-content">
         <div class="input-group">
-          <input type="text" name="contact" id="editContact" class="input" required>
-          <label for="editContact" class="label">Contact</label>
+          <input type="text" name="contact" id="editContact" class="input" pattern="[0-9]{10}" maxlength="10" title="Please enter exactly 10 digits" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10)" required>
+          <label for="editContact" class="label">Contact (10 digits)</label>
         </div>
       </div>
       <div class="modal-content">
@@ -362,9 +362,20 @@ include 'sidebar.php';
         xhr.open("POST", "update_status.php", true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhr.onreadystatechange = function() {
-          if (xhr.readyState == 4 && xhr.status == 200) {
-            // Refresh the entire page
-            location.reload();
+          if (xhr.readyState == 4) {
+            if (xhr.status == 200) {
+              if (xhr.responseText.includes("successfully")) {
+                // Update the status in the dropdown without page reload
+                document.getElementById('status-' + reservation_id).value = status;
+                // Show success message
+                alert("Status updated successfully!");
+              } else {
+                // Show error message
+                alert("Error: " + xhr.responseText);
+              }
+            } else {
+              alert("Error updating status. Please try again.");
+            }
           }
         };
         xhr.send("reservation_id=" + encodeURIComponent(reservation_id) + "&status=" + encodeURIComponent(status));
