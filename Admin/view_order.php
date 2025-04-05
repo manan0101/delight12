@@ -158,7 +158,7 @@ include 'sidebar.php';
             <p><?php echo $order['cancel_reason']; ?></p>
           </div>
           <hr>
-          <form method="post" action="update_order_status.php" onsubmit="return validateForm()">
+          <form method="post" action="update_order_status.php" onsubmit="return handleStatusUpdate(event)">
             <div class="status-container">
               <label for="orderStatus" class="form-label"><strong>Order Status</strong></label>
               <select class="form-select" id="orderStatus" name="order_status">
@@ -235,7 +235,6 @@ include 'sidebar.php';
       xhr.send('order_id=' + encodeURIComponent(orderId) + '&payment_status=' + encodeURIComponent(paymentStatus));
     });
 
-
     document.getElementById('orderStatus').addEventListener('change', function() {
       const cancelReasonContainer = document.getElementById('cancelReasonContainer');
       if (this.value === 'Cancelled') {
@@ -255,6 +254,31 @@ include 'sidebar.php';
         }
       }
       return true;
+    }
+
+    function handleStatusUpdate(event) {
+      event.preventDefault();
+      
+      if (!validateForm()) {
+        return false;
+      }
+
+      const formData = new FormData(event.target);
+      const xhr = new XMLHttpRequest();
+      
+      xhr.open('POST', 'update_order_status.php', true);
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          if (confirm('Order status has been updated successfully. Click OK to continue.')) {
+            window.location.href = 'admin_orders.php';
+          }
+        } else {
+          alert('Error updating order status. Please try again.');
+        }
+      };
+      
+      xhr.send(formData);
+      return false;
     }
   </script>
 </body>

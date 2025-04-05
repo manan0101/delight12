@@ -154,7 +154,7 @@ $user_info = getUserInfo($user_email);
           </div>
 
           <div class="form-group">
-            <input type="file" id="profile_image" name="profile_image" placeholder=" ">
+            <input type="file" id="profile_image" name="profile_image" placeholder=" " accept="image/*" required>
 
           </div>
 

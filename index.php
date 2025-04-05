@@ -361,7 +361,7 @@ $conn->close();
               </div>
               <div class="form-group">
                 <label for="date">Date:</label>
-                <input type="date" id="date" name="reservedDate" required>
+                <input type="date" id="date" name="reservedDate" min="<?= date('Y-m-d');?>" required>
               </div>
             </div>
             <div class="form-row">
@@ -571,6 +571,27 @@ $conn->close();
       });
     });
   </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let now = new Date();
+        let hours = now.getHours().toString().padStart(2, '0');
+        let minutes = now.getMinutes().toString().padStart(2, '0');
+        let minTime = hours + ":" + minutes;
+        
+        let date = document.querySelector("input[name='reservedDate']");
+        let time = document.getElementById("time");
+
+        function updateMinTime() {
+            if (date.value === "<?= date('Y-m-d'); ?>") {
+                time.min = minTime;
+            } else {
+                time.removeAttribute("min");
+            }
+        }
+
+        date.addEventListener("change", updateMinTime);
+    });
+</script>
 
 
 </body>

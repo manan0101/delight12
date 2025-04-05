@@ -77,12 +77,24 @@
 					</div>
 					<div class="input-field">
 						<i class="fas fa-phone" style="transform: rotate(90deg);"></i>
-						<input type="text" placeholder="Contact No" name="contact" onkeyup="hideAlertBox()" required />
+						<input type="text" placeholder="Contact No" name="contact" id="contact" onkeyup="validatePhone(this.value)" required />
+					</div>
+					<div id="phoneError" class="alert alert-danger" style="display: none; margin-top: 5px;">
+						Please Enter 10 Digit Mobile Number.
 					</div>
 					<div class="input-field">
 						<i class="fas fa-lock"></i>
-						<input type="password" id="registerPassword" placeholder="Password" name="password" required onkeyup="hideAlertBox()" />
+						<input type="password" id="registerPassword" placeholder="Password" name="password" onkeyup="validatePassword(this.value)" required />
 						<i class="fas fa-eye-slash" id="toggleRegisterPassword" style="cursor: pointer;"></i>
+					</div>
+					<div id="passwordError" class="alert alert-danger" style="display: none; margin-top: 5px;">
+						Password must contain:
+						<ul style="margin: 5px 0; padding-left: 20px;">
+							<li id="lengthCheck">At least 8 characters</li>
+							<li id="symbolCheck">At least 1 symbol (!@#$%^&*)</li>
+							<li id="capitalCheck">At least 1 capital letter</li>
+							<li id="numberCheck">At least 1 number</li>
+						</ul>
 					</div>
 					<input type="submit" class="submit" value="Sign up" id="registerButton" />
 
@@ -177,6 +189,51 @@ toggleRegisterPassword.addEventListener('click', function() {
 		function hideAlertBox() {
 			const alertBox = document.getElementById('alertbox');
 			alertBox.style.display = 'none';
+		}
+
+		function validatePhone(phone) {
+			const phoneError = document.getElementById('phoneError');
+			const registerButton = document.getElementById('registerButton');
+			
+			// Remove any non-digit characters
+			phone = phone.replace(/\D/g, '');
+			
+			// Update input value to only contain digits
+			document.getElementById('contact').value = phone;
+			
+			if (phone.length !== 10) {
+				phoneError.style.display = 'block';
+				registerButton.disabled = true;
+			} else {
+				phoneError.style.display = 'none';
+				registerButton.disabled = false;
+			}
+		}
+
+		function validatePassword(password) {
+			const passwordError = document.getElementById('passwordError');
+			const registerButton = document.getElementById('registerButton');
+			
+			// Password requirements
+			const hasMinLength = password.length >= 8;
+			const hasSymbol = /[!@#$%^&*]/.test(password);
+			const hasCapital = /[A-Z]/.test(password);
+			const hasNumber = /[0-9]/.test(password);
+			
+			// Update validation indicators
+			document.getElementById('lengthCheck').style.color = hasMinLength ? 'green' : 'red';
+			document.getElementById('symbolCheck').style.color = hasSymbol ? 'green' : 'red';
+			document.getElementById('capitalCheck').style.color = hasCapital ? 'green' : 'red';
+			document.getElementById('numberCheck').style.color = hasNumber ? 'green' : 'red';
+			
+			// Show/hide error message
+			if (!hasMinLength || !hasSymbol || !hasCapital || !hasNumber) {
+				passwordError.style.display = 'block';
+				registerButton.disabled = true;
+			} else {
+				passwordError.style.display = 'none';
+				registerButton.disabled = false;
+			}
 		}
 	</script>
 

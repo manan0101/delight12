@@ -365,10 +365,11 @@ include 'sidebar.php';
           if (xhr.readyState == 4) {
             if (xhr.status == 200) {
               if (xhr.responseText.includes("successfully")) {
-                // Update the status in the dropdown without page reload
-                document.getElementById('status-' + reservation_id).value = status;
-                // Show success message
-                alert("Status updated successfully!");
+                // Show success message in a popup
+                if (confirm("Reservation status has been updated successfully. Click OK to continue.")) {
+                  // Redirect to admin_orders.php when user clicks OK
+                  window.location.href = "reservations.php";
+                }
               } else {
                 // Show error message
                 alert("Error: " + xhr.responseText);
